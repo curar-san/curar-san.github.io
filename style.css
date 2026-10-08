@@ -1,0 +1,1007 @@
+@charset "UTF-8";
+
+/* ============================================================
+   合同会社クラル コーポレートサイト
+   WordPress移植時は、このファイルの中身をテーマの style.css へ
+   ============================================================ */
+
+/* ---------- デザイントークン ---------- */
+
+:root {
+  --ground: #FFFFFF;
+  --surface: #FBF6F3;
+  --ink: #2B2B2B;
+  --ink-soft: #6B6B6B;
+  --rule: #EAE2DD;
+  --accent: #E8776A;
+  --accent-ink: #C95A4E;
+  --accent-wash: rgba(232, 119, 106, 0.10);
+  --btn-bg: #C95A4E;
+  --btn-bg-hover: #B04A3F;
+  --btn-fg: #FFFFFF;
+  --todo-bg: rgba(232, 119, 106, 0.16);
+  --hero-bg: #F8F0EB;
+
+  --font-display: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  --font-util: ui-sans-serif, system-ui, "Segoe UI", "Helvetica Neue", sans-serif;
+
+  --step-display: clamp(1.95rem, 1.1rem + 3.4vw, 3.3rem);
+  --step-pagehead: clamp(1.65rem, 1.1rem + 2.2vw, 2.5rem);
+  --step-h2: clamp(1.3rem, 1.05rem + 1.1vw, 1.75rem);
+  --step-h3: 1.1rem;
+  --step-body: 1rem;
+  --step-small: 0.8125rem;
+
+  --col: 1080px;
+  --measure: 40em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #1C1917;
+  --surface: #26211E;
+  --ink: #ECE6E2;
+  --ink-soft: #A39A94;
+  --rule: #3A322D;
+  --accent: #F08A7C;
+  --accent-ink: #F5A396;
+  --accent-wash: rgba(240, 138, 124, 0.14);
+  --btn-bg: #F08A7C;
+  --btn-bg-hover: #F5A396;
+  --btn-fg: #1C1917;
+  --todo-bg: rgba(240, 138, 124, 0.22);
+  --hero-bg: #26211E;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #1C1917;
+  --surface: #26211E;
+  --ink: #ECE6E2;
+  --ink-soft: #A39A94;
+  --rule: #3A322D;
+  --accent: #F08A7C;
+  --accent-ink: #F5A396;
+  --accent-wash: rgba(240, 138, 124, 0.14);
+  --btn-bg: #F08A7C;
+  --btn-bg-hover: #F5A396;
+  --btn-fg: #1C1917;
+  --todo-bg: rgba(240, 138, 124, 0.22);
+  --hero-bg: #26211E;
+}
+
+:root[data-theme="light"] {
+  --ground: #FFFFFF;
+  --surface: #FBF6F3;
+  --ink: #2B2B2B;
+  --ink-soft: #6B6B6B;
+  --rule: #EAE2DD;
+  --accent: #E8776A;
+  --accent-ink: #C95A4E;
+  --accent-wash: rgba(232, 119, 106, 0.10);
+  --btn-bg: #C95A4E;
+  --btn-bg-hover: #B04A3F;
+  --btn-fg: #FFFFFF;
+  --todo-bg: rgba(232, 119, 106, 0.16);
+  --hero-bg: #F8F0EB;
+}
+
+/* ---------- ベース ---------- */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  font-weight: 400;
+  line-height: 2.05;
+  letter-spacing: 0.045em;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+.shell {
+  max-width: var(--col);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+}
+
+/* 未確定の情報。内容が入ったら削除する */
+.todo {
+  background: var(--todo-bg);
+  color: var(--accent-ink);
+  font-family: var(--font-util);
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  padding: 0.1em 0.5em;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+/* ---------- ヘッダー ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-block: 1.1rem;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-mark { color: var(--accent-ink); }
+
+.topnav {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.topnav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.topnav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+.topnav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 620px) {
+  .topnav { gap: 1rem; font-size: 0.74rem; letter-spacing: 0.06em; }
+  .topbar-inner { flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+}
+
+/* ---------- 三つの入口（企業の方へ / 経営者の方へ / 個人の方へ） ---------- */
+
+.doors {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 960px) {
+  .doors { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+}
+
+.door {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.door:hover { border-color: var(--accent); background: var(--accent-wash); }
+
+.door-label {
+  font-family: var(--font-util);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin: 0;
+}
+
+.door h2 {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.72;
+  margin: 0;
+}
+
+.door p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+.door-go {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-ink);
+}
+
+.door-go::after { content: " →"; }
+
+/* ---------- よくある質問 ---------- */
+
+.faq { border-top: 1px solid var(--rule); }
+
+.faq details { border-bottom: 1px solid var(--rule); }
+
+.faq summary {
+  cursor: pointer;
+  padding-block: 1.15rem;
+  padding-right: 2rem;
+  position: relative;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.85;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.25rem;
+  top: 1.15rem;
+  font-family: var(--font-util);
+  color: var(--accent-ink);
+}
+
+.faq details[open] summary::after { content: "−"; }
+
+.faq details p {
+  margin: 0 0 1.3rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: var(--measure);
+}
+
+/* ---------- トップページのヒーロー ---------- */
+
+.hero-band { background: var(--hero-bg); }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(2.5rem, 6vw, 4.5rem);
+}
+
+@media (min-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+}
+
+/* 本人写真：角を少し丸めて、木目の背景ごと見せる */
+.hero-photo {
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 4 / 4.6;
+  max-height: 560px;
+  justify-self: center;
+  width: min(100%, 460px);
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+/* ヒーロー下の「呼吸」ひとこと */
+.hero-breath {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--step-small);
+  color: var(--ink-soft);
+  line-height: 1.9;
+}
+
+.hero-breath strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+}
+
+.hero-breath .breath-circle {
+  flex: none;
+  width: 44px;
+}
+
+.eyebrow {
+  font-family: var(--font-util);
+  font-size: var(--step-small);
+  letter-spacing: 0.18em;
+  color: var(--accent-ink);
+  margin: 0 0 1.5rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-display);
+  font-weight: 700;
+  line-height: 1.62;
+  letter-spacing: 0.05em;
+  text-wrap: balance;
+  margin: 0 0 1.85rem;
+}
+
+.hero-lead {
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  margin: 0 0 2.5rem;
+}
+
+/* ---------- 下層ページのヘッダー ---------- */
+
+.pagehead {
+  padding-block: clamp(2.75rem, 7vw, 5rem) clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.pagehead h1 {
+  font-family: var(--font-display);
+  font-size: var(--step-pagehead);
+  font-weight: 700;
+  line-height: 1.65;
+  letter-spacing: 0.06em;
+  text-wrap: balance;
+  margin: 0 0 1.25rem;
+}
+
+.pagehead p {
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* ---------- ボタン ---------- */
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  border: 1px solid var(--btn-bg);
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-solid { background: var(--btn-bg); color: var(--btn-fg); }
+.btn-solid:hover { background: var(--btn-bg-hover); border-color: var(--btn-bg-hover); }
+
+.btn-line { color: var(--accent-ink); border-color: var(--accent); }
+.btn-line:hover { background: var(--accent-wash); }
+
+/* ---------- 呼吸の円（4秒吸って、6秒吐く） ---------- */
+
+.breath { display: grid; justify-items: center; gap: 1.5rem; }
+
+.breath-circle {
+  width: clamp(150px, 26vw, 240px);
+  border-color: var(--accent);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, var(--accent-wash), transparent 72%);
+  border: 1px solid var(--rule);
+  animation: breathe 10s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%   { transform: scale(0.84); }
+  40%  { transform: scale(1); }
+  100% { transform: scale(0.84); }
+}
+
+.breath-caption {
+  text-align: center;
+  font-size: var(--step-small);
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.breath-caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breath-circle { animation: none; transform: scale(0.94); }
+}
+
+/* ---------- セクション ---------- */
+
+.band { border-top: 1px solid var(--rule); }
+.band-tint { background: var(--surface); }
+
+.sec {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.1rem;
+  padding-block: clamp(3.25rem, 8vw, 6rem);
+  max-width: calc(var(--measure) + 2 * clamp(1.25rem, 5vw, 3.5rem) + 8rem);
+}
+
+/* 英字ラベル（Lay風）：見出しの真上に小さくアクセント色で */
+.sec-label {
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 日本語の補足はラベルの横に薄く */
+.sec-label span {
+  margin-left: 0.9rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+
+.sec-body > * { margin: 0; }
+.sec-body > * + * { margin-top: 1.5rem; }
+
+.sec h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-h2);
+  font-weight: 700;
+  line-height: 1.78;
+  letter-spacing: 0.055em;
+  text-wrap: balance;
+}
+
+.sec p { max-width: var(--measure); color: var(--ink-soft); }
+.sec p.lead-ink { color: var(--ink); }
+
+/* ---------- 課題リスト ---------- */
+
+.issues { list-style: none; border-top: 1px solid var(--rule); padding: 0; }
+
+.issues li {
+  border-bottom: 1px solid var(--rule);
+  padding-block: 1.2rem;
+  padding-left: 1.85rem;
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+}
+
+.issues li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 2rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---------- 講座の一覧（トップページ） ---------- */
+
+.prog { border-top: 1px solid var(--rule); }
+
+.prog-item {
+  border-bottom: 1px solid var(--rule);
+  padding-block: 1.9rem;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.prog-item h3 {
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.prog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+  font-family: var(--font-util);
+  font-size: 0.73rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.prog-meta span { white-space: nowrap; }
+.prog-item p { margin: 0; color: var(--ink-soft); }
+
+/* ---------- 講座の詳細（講座ページ） ---------- */
+
+.course {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(2.5rem, 6vw, 3.75rem);
+}
+
+.course h2 {
+  font-family: var(--font-display);
+  font-size: var(--step-h2);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.75rem;
+}
+
+.course-sub {
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  margin: 0 0 2rem;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.25rem;
+}
+
+@media (min-width: 860px) {
+  .course-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr); gap: clamp(2rem, 5vw, 3.5rem); }
+}
+
+.course-block + .course-block { margin-top: 1.9rem; }
+
+.course-block h3 {
+  font-family: var(--font-util);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin: 0 0 0.8rem;
+}
+
+.course-block p { margin: 0; color: var(--ink-soft); max-width: var(--measure); }
+
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: cue; }
+
+.steps li {
+  counter-increment: cue;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.9rem;
+  padding-block: 0.65rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.steps li::before {
+  content: attr(data-time);
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 講座の仕様カード */
+
+.spec-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.6rem 1.5rem;
+  align-self: start;
+}
+
+.spec-card dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.spec-card dt {
+  font-family: var(--font-util);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 0.35rem;
+}
+
+.spec-card dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.price {
+  margin-top: 1.4rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+}
+
+.price-label {
+  font-family: var(--font-util);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 0.4rem;
+}
+
+.price-figure {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.price-note {
+  font-size: var(--step-small);
+  color: var(--ink-soft);
+  line-height: 1.85;
+  margin: 0.5rem 0 0;
+}
+
+/* ---------- 会社概要のテーブル ---------- */
+
+.table-scroll { overflow-x: auto; }
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid var(--rule);
+  font-size: 0.95rem;
+}
+
+.spec-table th,
+.spec-table td {
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 0.5rem 1.1rem 0;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.95;
+}
+
+.spec-table th {
+  width: 11rem;
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  padding-top: 1.35rem;
+}
+
+.spec-table td { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ---------- プロフィール ---------- */
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 760px) {
+  .profile { grid-template-columns: 220px minmax(0, 1fr); gap: clamp(2rem, 5vw, 3.25rem); }
+}
+
+/* 代表の写真（会社概要） */
+.portrait-photo {
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border-radius: 6px;
+}
+
+.portrait {
+  aspect-ratio: 3 / 4;
+  background: var(--surface);
+  border: 1px dashed var(--rule);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--ink-soft);
+  font-size: var(--step-small);
+  line-height: 1.85;
+}
+
+/* 講師の名前＋丸い写真 */
+.about-head {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.about-photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  flex: none;
+}
+
+.about-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  margin: 0;
+}
+
+.about-role {
+  font-family: var(--font-util);
+  font-size: var(--step-small);
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
+  margin: 0.5rem 0 0;
+}
+
+.career { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+
+.career li {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 0.9rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.career b {
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.35rem;
+}
+
+.pull {
+  border-left: 2px solid var(--accent);
+  background: var(--accent-wash);
+  border-radius: 0 6px 6px 0;
+  padding: 1.45rem 1.7rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: 0.055em;
+  max-width: var(--measure);
+}
+
+/* ---------- 導入企業の声（仮置き） ---------- */
+
+.voice-slot {
+  border: 1px dashed var(--rule);
+  border-radius: 6px;
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: var(--step-small);
+  line-height: 2;
+  max-width: var(--measure);
+}
+
+/* ---------- 導入の流れ ---------- */
+
+.flow { list-style: none; border-top: 1px solid var(--rule); counter-reset: step; margin: 0; padding: 0; }
+
+.flow li {
+  counter-increment: step;
+  border-bottom: 1px solid var(--rule);
+  padding-block: 1.4rem;
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.flow li::before {
+  content: "0" counter(step);
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.flow strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.85;
+  margin-bottom: 0.3rem;
+}
+
+.flow span { display: block; font-size: var(--step-small); color: var(--ink-soft); line-height: 1.95; }
+
+/* ---------- お問い合わせ ---------- */
+
+.formslot {
+  border: 1px dashed var(--rule);
+  border-radius: 6px;
+  background: var(--ground);
+  padding: 2.25rem 1.75rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: var(--step-small);
+  line-height: 2;
+  max-width: var(--measure);
+}
+
+.formslot code {
+  font-family: var(--font-util);
+  font-size: 0.78em;
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+}
+
+.gform { width: 100%; border: 0; min-height: 900px; }
+
+/* 質問数が多いフォーム用（中でスクロールさせないための高さ） */
+.gform-long { min-height: 2200px; }
+.gform-xlong { min-height: 2650px; }
+
+.contact-note { font-size: var(--step-small); color: var(--ink-soft); line-height: 2; }
+
+/* ---------- フッター ---------- */
+
+.foot { border-top: 1px solid var(--rule); }
+
+.foot-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 2.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+.foot-nav { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.foot-nav a { text-decoration: none; }
+.foot-nav a:hover { color: var(--ink); }
+
+/* 定価とモニター価格の並び（経営者の方へ） */
+.price-figure small {
+  font-size: 0.62em;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-left: 0.2em;
+}
+
+.price-regular { color: var(--ink); font-size: 1.1rem; }
+
+.price-monitor {
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border-top: 0;
+  background: var(--accent-wash);
+  border-radius: 6px;
+}
+
+/* ---------- 経営者の方へ（LPと共通） ---------- */
+/* 名刺と同じ「問いかけ → 企画名 → 答え」の並び */
+.pagehead .hero-ask {
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+.pagehead .hero-answer {
+  margin: -0.5rem 0 1.5rem;
+  font-size: 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-ink);
+}
+
+/* ボッチ社長の二つのかたち */
+.bocchi { display: grid; gap: 1.5rem; margin-bottom: 1.75rem; }
+@media (min-width: 860px) { .bocchi { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+.bocchi-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+  padding-left: 0.8rem;
+  border-left: 2px solid var(--accent);
+}
+.about-name small {
+  display: block;
+  font-family: var(--font-util);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+.about-head + p { margin-top: 1.5rem; }
+
+/* 会社概要：主な登壇・講座の見出し */
+.career-head {
+  font-family: var(--font-util);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: var(--accent-ink);
+  margin: 2.5rem 0 0.8rem;
+}
