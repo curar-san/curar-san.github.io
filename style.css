@@ -363,6 +363,11 @@ img { max-width: 100%; height: auto; display: block; }
   margin: 0 0 1.85rem;
 }
 
+/* 2列のときは見出しの列が狭いので、1行に収まる大きさにする */
+@media (min-width: 900px) {
+  .hero h1 { font-size: clamp(1.95rem, 0.6rem + 2.6vw, 3.1rem); }
+}
+
 .hero-lead {
   color: var(--ink-soft);
   max-width: var(--measure);
