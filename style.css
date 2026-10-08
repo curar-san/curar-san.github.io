@@ -1005,3 +1005,6 @@ img { max-width: 100%; height: auto; display: block; }
   color: var(--accent-ink);
   margin: 2.5rem 0 0.8rem;
 }
+
+/* 見出しを言葉の途中で折り返さない（1行に収まらないときだけ中で折り返す） */
+.phrase { display: inline-block; }

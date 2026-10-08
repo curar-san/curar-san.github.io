@@ -993,6 +993,9 @@ img { max-width: 100%; height: auto; display: block; }
   margin-top: 0.2rem;
 }
 .about-head + p { margin-top: 1.5rem; }
+
+/* 見出しを言葉の途中で折り返さない（1行に収まらないときだけ中で折り返す） */
+.phrase { display: inline-block; }
 </style>
 </head>
 <body>
@@ -1014,7 +1017,7 @@ img { max-width: 100%; height: auto; display: block; }
     <section class="shell hero pagehead">
       <div>
     <p class="hero-ask">社内に、相談できる人はいますか。</p>
-    <h1>ボッチ社長のための<br>伴走コンサル</h1>
+    <h1><span class="phrase">ボッチ社長のための</span><br><span class="phrase">伴走コンサル</span></h1>
     <p class="hero-answer">半年、となりで一緒に考えます。</p>
     <p>先代から会社を引き継いだ二代目・三代目の社長へ。ひとりで会社を営む社長へ。誰にも相談できないまま、ひとりで抱えていませんか。半年かけて、あなたのビジョンを言葉にし、まわりの人にブレずに伝えられるところまで一緒に進みます。</p>
       </div>
