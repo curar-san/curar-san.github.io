@@ -45,8 +45,19 @@
     </section>
   </div>
 
+  <!-- ===== おすすめセッション診断（中身は shindan.js が描画する） ===== -->
+  <div class="band" id="check">
+    <section class="shell sec">
+      <p class="sec-label">Check<span>おすすめセッション診断</span></p>
+      <div class="sec-body">
+        <h2><span class="phrase">どれが合うか、</span><span class="phrase">5つの質問で</span><span class="phrase">見てみませんか。</span></h2>
+        <div class="shindan" data-apply="#contact"></div>
+      </div>
+    </section>
+  </div>
+
   <!-- ===== セッションの種類 ===== -->
-  <div class="band" id="menu">
+  <div class="band band-tint" id="menu">
     <section class="shell sec">
       <p class="sec-label">Session<span>セッションの種類</span></p>
       <div class="sec-body">
@@ -76,7 +87,7 @@
   </div>
 
   <!-- ===== 流れ ===== -->
-  <div class="band band-tint" id="flow">
+  <div class="band" id="flow">
     <section class="shell sec">
       <p class="sec-label">Flow<span>申し込みから当日まで</span></p>
       <div class="sec-body">
@@ -91,7 +102,7 @@
   </div>
 
   <!-- ===== よくある質問 ===== -->
-  <div class="band" id="faq">
+  <div class="band band-tint" id="faq">
     <section class="shell sec">
       <p class="sec-label">FAQ<span>よくある質問</span></p>
       <div class="sec-body">
@@ -126,7 +137,7 @@
   </div>
 
   <!-- ===== 申し込み ===== -->
-  <div class="band band-tint" id="contact">
+  <div class="band" id="contact">
     <section class="shell sec">
       <p class="sec-label">Booking<span>申し込み</span></p>
       <div class="sec-body">
@@ -160,5 +171,6 @@
   </div>
 </footer>
 
+<script src="shindan.js"></script>
 </body>
 </html>

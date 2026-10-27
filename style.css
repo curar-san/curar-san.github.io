@@ -1013,3 +1013,138 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* 見出しを言葉の途中で折り返さない（1行に収まらないときだけ中で折り返す） */
 .phrase { display: inline-block; }
+
+/* ---------- おすすめセッション診断（shindan.js） ---------- */
+
+.shindan { scroll-margin-top: 6rem; }
+
+.shindan-card {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: start;
+  max-width: 44rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  background: var(--ground);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.band-tint .shindan-card { background: var(--ground); }
+
+.shindan-card > * { margin: 0; }
+
+.shindan-progress {
+  width: 100%;
+  height: 4px;
+  background: var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.shindan-progress span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.shindan-step,
+.shindan-label {
+  font-family: var(--font-util);
+  font-size: var(--step-small);
+  letter-spacing: 0.14em;
+  color: var(--accent-ink);
+}
+
+.shindan-q,
+.shindan-type {
+  font-family: var(--font-display);
+  font-size: var(--step-h2);
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  outline: none;
+}
+
+.shindan-type { color: var(--accent-ink); }
+
+.shindan-choices {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.shindan-choice {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  line-height: 1.8;
+  padding: 0.95rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.shindan-choice:hover { border-color: var(--accent); background: var(--accent-wash); }
+
+.shindan-choice:focus-visible,
+.shindan-back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.shindan-back {
+  font: inherit;
+  font-size: var(--step-small);
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.shindan-back:hover { color: var(--ink); }
+
+.shindan-card .shindan-note { font-size: 0.92rem; color: var(--ink-soft); }
+
+.shindan-sessions { display: grid; gap: 0.8rem; width: 100%; }
+
+.shindan-session {
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 6px 6px 0;
+}
+
+.shindan-session h4 {
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.shindan-session .prog-meta { margin: 0.2rem 0 0; }
+
+.shindan-order {
+  display: inline-block;
+  font-size: var(--step-small);
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+
+.shindan-card .btn { cursor: pointer; }
+
+.shindan-caution {
+  font-size: var(--step-small);
+  color: var(--ink-soft);
+  line-height: 1.9;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  width: 100%;
+}
